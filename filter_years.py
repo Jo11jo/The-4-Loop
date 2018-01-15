@@ -43,15 +43,25 @@ def process_csv(file, header):
 
 if __name__ == "__main__":
     header = read_header("h.txt")
-    out = process_csv("years/1820", header)
-    with open("1820.csv", "w") as file:
+    out = process_csv("years/1920", header)
+    with open("1920.csv", "w") as file:
         content = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
         content.writerow(['birthYear', 'deathYear'])
         for row in out:
-            if 'birthYear' in row and 'deathYear' in row:
-                content.writerow([row['birthYear'], row['deathYear']])
-            
-        
+            if 'birthDate' in row and 'deathDate' in row:
+                if row['birthDate'][0] == '1':
+                    row['birthDate'] = str(row['birthDate'][0]) + str(row['birthDate'][1]) + str(row['birthDate'][2]) + str(row['birthDate'][3])
+                else:
+                    row['birthDate'] = str(row['birthDate'][1]) + str(row['birthDate'][2]) + str(row['birthDate'][3]) + str(row['birthDate'][4])
+         
+                if row['deathDate'][0] == '1' or row['deathDate'][0] == '2':
+                    row['deathDate'] = str(row['deathDate'][0]) + str(row['deathDate'][1]) + str(row['deathDate'][2]) + str(row['deathDate'][3])
+                else:
+                    row['deathDate'] = str(row['deathDate'][1]) + str(row['deathDate'][2]) + str(row['deathDate'][3]) + str(row['deathDate'][4])
+                content.writerow([row['birthDate'], row['deathDate']])
+
+
+
         
         
         

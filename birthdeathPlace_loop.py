@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import json, logging, csv, re, sys, codecs, numpy
+import logging, csv, re, sys, codecs
 
 floatre = re.compile("^\d+\.\d+$")
 intre = re.compile("^\d+$")

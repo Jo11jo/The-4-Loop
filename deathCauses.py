@@ -69,8 +69,7 @@ altered_causes = []
 for number in range(len(influential_causes)):
   altered_cause = influential_causes[number][0]
   altered_cause = altered_cause.split("resource/")
-  altered_causes.append([altered_cause[1], influential_causes[number][1]])
-print (altered_causes)    
+  altered_causes.append([altered_cause[1], influential_causes[number][1]])   
 
 with open("common_deathCauses.csv", "w") as file:
     content = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)

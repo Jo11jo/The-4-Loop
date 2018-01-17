@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 import logging, csv, re, sys, codecs
 
 floatre = re.compile("^\d+\.\d+$")
@@ -57,4 +55,26 @@ for number in range(1820, 1921):
                 deathCause[(person["deathCause"])] = 1  
             # Adds a 1 to the variable "deaths" each time, the death cause of a person is indicated            
             deaths += 1
-#                
+# Sorts the list according to the most common death causes            
+sorted_list = sorted(deathCause.items(), key = lambda x: x[1])
+# Reverses the sorting
+sorted_list.reverse()
+# Selects the 15 most common death causes
+influential_causes = []
+for cause in range(0, 15):
+    item = sorted_list[cause]
+    influential_causes.append(item)
+
+altered_causes = []    
+for number in range(len(influential_causes)):
+  altered_cause = influential_causes[number][0]
+  altered_cause = altered_cause.split("resource/")
+  altered_causes.append([altered_cause[1], influential_causes[number][1]])
+print (altered_causes)    
+
+with open("common_deathCauses.csv", "w") as file:
+    content = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
+    content.writerow(['cause', 'deaths'])
+    for row in altered_causes:
+                content.writerow([row[0], row[1]])
+            

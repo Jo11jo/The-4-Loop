@@ -32,12 +32,16 @@ def process_csv(file, header):
     if not stdin:
         fd.close()
     return out
+
+# The variable 'entries per year' counts the people for whom the birth year is the same as indicated by the file
+    # This way we sort our all the wrongly assigned entries
 entries_per_year = 0
 for number in ("years\\1500"):
     if __name__ == "__main__":
         header = read_header("h.txt")
         out = process_csv("years\\1500", header)
-        for person in out:    
+        for person in out: 
+            #The next few steps select only the part of the birth date that indicates the year  (birth date starts either with the year or with double quotes)
             if person['birthDate'][0] == '1':
                     person['birthDate'] = str(person['birthDate'][0]) + str(person['birthDate'][1]) + str(person['birthDate'][2]) + str(person['birthDate'][3])                   
             else:

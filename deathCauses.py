@@ -65,12 +65,14 @@ for cause in range(0, 15):
     item = sorted_list[cause]
     influential_causes.append(item)
 
+#Selects only the part of the link that is the actual death cause
 altered_causes = []    
 for number in range(len(influential_causes)):
   altered_cause = influential_causes[number][0]
   altered_cause = altered_cause.split("resource/")
   altered_causes.append([altered_cause[1], influential_causes[number][1]])   
 
+# Create a csv-file with the two columns 'cause', which includes the death cause, and 'deaths', which includes the number of deaths connected to the cause
 with open("common_deathCauses.csv", "w") as file:
     content = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_NONNUMERIC)
     content.writerow(['cause', 'deaths'])

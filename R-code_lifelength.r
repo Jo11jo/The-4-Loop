@@ -1,5 +1,5 @@
 library('tidyverse')
-
+library('ggplot2')
 ----------------------------------------------------------------------------------------------------------
 
 #The csv-files created by python have two columns each: "birthYear" and "deathYear"
@@ -40,7 +40,7 @@ means_frame <- data.frame(year, mean)
 
 #This data frame is plotted in a bar graph
 ggplot() +
-  geom_col(data = means_frame, mapping = aes(x = year, y = mean), width = 1)
+  geom_col(data = means_frame, mapping = aes(x = year, y = mean), fill = NA, colour = "red", width = 1) + labs(x = "Year", y = "Mean Life Expectancy (in years)")
 
 ----------------------------------------------------------------------------------------------------------
 
@@ -49,4 +49,5 @@ years_means <- read.csv('years_means.csv')
 
 #The graph will show the development in averge life-expectancy from 1820 to 1920
 ggplot() +
-  geom_line(data = years_means, mapping = aes(x = year, y = lifetime_mean), colour = 'red')
+  geom_point(data = years_means, mapping = aes(x = year, y = lifetime_mean), colour = 'red') + labs(x = "Year", y = "Mean Life Expectancy (in years)") +
+  theme(plot.margin=unit(c(0.5,1,0.5,0.5),"cm"))
